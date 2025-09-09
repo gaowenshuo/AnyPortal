@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AnyPortal:<br>Zero-Shot Consistent Video Background Replacement</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 10px;
+            text-align: center;
+            background-color: #ffffff;
+        }
+        h1 {
+            font-size: 2.5em;
+            line-height: 1.2em;
+        }
+        .authors {
+            margin-top: 0;
+            font-size: 1.2em; /* 增大字体大小 */
+            text-align: center; /* 居中对齐 */
+            margin-bottom: 0;
+        }
+        .authors a {
+            color: blue;
+            text-decoration: none;
+            margin: 0;
+        }
+        .institution {
+            font-style: italic;
+            margin-top: 0;
+            font-size: 1.1em; /* 增大机构信息的字体 */
+            color:#555555
+        }
+        .buttons {
+            margin-top: 10px;
+        }
+        .button {
+            background-color: #000;
+            color: #fff;
+            padding: 10px 20px; /* 保持原来的按钮大小 */
+            font-size: 1em; /* 保持原来的按钮字体大小 */
+            border: none;
+            margin: 10px;
+            cursor: not-allowed; /* 禁用按钮（由于链接尚未可用） */
+            display: inline-flex;
+            align-items: center;
+            border-radius: 30px; /* 两边圆角 */
+        }
+        .button img {
+            width: 24px;
+            margin-right: 10px;
+        }
+
+        video {
+            margin-top: 30px;
+            width: 80%;
+        }
+        .overview {
+            margin-top: 40px;
+            width: 40%; /* 占据中间三分之一 */
+            margin-left: auto;
+            margin-right: auto;
+            text-align: justify;
+            font-size: 1.2em; /* 增大 overview 部分的字体大小 */
+        }
+        h2 {
+            font-size: 2em;
+            margin-top: 40px;
+        }
+        .images {
+            margin-top: 40px;
+            text-align: center; /* 图像居中 */
+        }
+        .images .group {
+            margin-bottom: 40px;
+        }
+        .images .group .prompt {
+            font-style: italic;
+            margin-bottom: 20px;
+        }
+        .images .group img {
+            width: 30%;
+            margin: 10px;
+        }
+        .references {
+            margin-top: 40px;
+        }
+        .references a {
+            color: blue;
+            text-decoration: none;
+            margin: 0 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>AnyPortal:<br>Zero-Shot Consistent Video Background Replacement</h1>
+
+    <h2>Overview</h2>
+    <div class="overview">
+        <p>We introduce AnyPortal, a novel zero-shot framework for video background replacement that leverages pre-trained diffusion models. Our framework collaboratively integrates the temporal prior of video diffusion models with the relighting capabilities of image diffusion models in a zero-shot setting. To address the critical challenge of foreground consistency, we propose a Refinement Projection Algorithm, which enables pixel-level detail manipulation to ensure precise foreground preservation. AnyPortal is training-free and overcomes the challenges of achieving foreground consistency and temporally coherent relighting. </p>
+    </div>
+
+    <h2>Framework</h2>
+    <img src="./videos/fig2-pipeline.png" alt="Framework Diagram" style="width: 50%;">
+
+    <h2>Comparison Results</h2>
+    <div class="images">
+        <div class="group">
+            <p class="prompt">"A black woman with curly hair in a red suit and sweater holding a computer is smiling in a park outside. The background is clear."
+            </p>
+            <video autoplay loop muted>
+                <source src="./videos/14.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+        </div>
+        <div class="group">
+            <p class="prompt">"A black woman with curly hair in a red suit and sweater holding a computer is smiling in a cyberpunk city street with neon lights. The background is clear and bright."
+            </p>
+            <video autoplay loop muted>
+                <source src="./videos/13.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+        </div>
+        <div class="group">
+            <p class="prompt">"A beautiful woman holding a glass is in a park outside with warm atmosphere."
+            </p>
+            <video autoplay loop muted>
+                <source src="./videos/11.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+        </div>
+        <div class="group">
+            <p class="prompt">"A beautiful woman holding a glass is in a cyberpunk city street with neon lights, with purple lights on the left side in the city street. The background is clear."
+            </p>
+            <video autoplay loop muted>
+                <source src="./videos/12.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+        </div>
+        <div class="group">
+            <p class="prompt">"A man with glasses and a hat is talking near a campfire on a night which shine the man bright. The background is clear."</p>
+            <video autoplay loop muted>
+                <source src="./videos/3.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+        </div>
+        <div class="group">
+            <p class="prompt">"A man with glasses and a hat is talking on a beach near a sea with waves. The golden sun shines on the sea and the sky is orange with beautiful clouds. The beach is golden."
+            </p>
+            <video autoplay loop muted>
+                <source src="./videos/4.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+        </div>
+        <div class="group">
+            <p class="prompt">"A woman wearing earphone is running in a sunny day."
+            </p>
+            <video autoplay loop muted>
+                <source src="./videos/8.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+        </div>
+        <div class="group">
+            <p class="prompt">"A woman wearing earphone is running in a dark night under the huge bright moon."
+            </p>
+            <video autoplay loop muted>
+                <source src="./videos/9.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+        </div>
+        <div class="group">
+            <p class="prompt">"A cat is standing in a broad living room on a wooden floor. The sunlight shine from the window and shine the cat's shadow and create a warm scene. The background is clear and bright."
+            </p>
+            <video autoplay loop muted>
+                <source src="./videos/10.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+        </div>
+        <div class="group">
+            <p class="prompt">"A handsome boy with curly hair and yellow sweater is on a golden beach and sunlight. The background is clear."</p>
+            <video autoplay loop muted>
+                <source src="./videos/1.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+        </div>
+        <div class="group">
+            <p class="prompt">"A man with a nice suit is in a classroom. The background is clear."
+            </p>
+            <video autoplay loop muted>
+                <source src="./videos/2.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+        </div>
+        <!-- <div class="group">
+            <p class="prompt">"A woman boxer is boxing near a window."
+            </p>
+            <video autoplay loop muted>
+                <source src="./videos/5.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+        </div> -->
+        <div class="group">
+            <p class="prompt">"A woman in sweater holding an ipad is studying in a bright classroom with white walls and blackboards. The background is clear."
+            </p>
+            <video autoplay loop muted>
+                <source src="./videos/6.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+        </div>
+        <div class="group">
+            <p class="prompt">"A beautiful woman bare feet with long hair wearing a dress walk forward with back to the camera, walking towards a castle along a flagstone path. The background is clear."
+            </p>
+            <video autoplay loop muted>
+                <source src="./videos/7.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+        </div>
+        <!-- <div class="group">
+            <p class="prompt">"A short hair woman is talking on a phone in front of a broad large clear field with nice clean weather."
+            </p>
+            <video autoplay loop muted>
+                <source src="./videos/15.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+        </div>
+        <div class="group">
+            <p class="prompt">"A man is talking on a phone in the meeting room with whiteboards and black chairs."
+            </p>
+            <video autoplay loop muted>
+                <source src="./videos/16.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+        </div> -->
+    </div>
+
+    <h2>Ablation Study</h2>
+    <div class="group">
+        <video autoplay loop muted>
+            <source src="./videos/ICCV-abla2.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+    </div>
+    <h2>Image-Guided Background Replacement</h2>
+    <div class="group">
+        <video autoplay loop muted>
+            <source src="./videos/ICCV-Ex.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+    </div>
+
+</body>
+</html>
